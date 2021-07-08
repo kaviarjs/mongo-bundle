@@ -119,7 +119,7 @@ export abstract class Collection<T = any> {
    * @param filter
    * @param options
    */
-  find(filter: FilterQuery<T> = {}, options?: FindOneOptions<any>): Cursor<T> {
+  find(filter: FilterQuery<T> = {}, options?: FindOneOptions<T>): Cursor<T> {
     const cursor = this.collection.find(filter, options);
 
     const oldToArray = cursor.toArray.bind(cursor);
@@ -152,7 +152,7 @@ export abstract class Collection<T = any> {
    */
   async findOne(
     query: FilterQuery<T> = {},
-    options?: FindOneOptions<any>
+    options?: FindOneOptions<T>
   ): Promise<T> {
     const result = await this.collection.findOne(query, options);
 
